@@ -3,24 +3,28 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Album from './Album';
 import './App.css';
+import ObtenerLaminas from './ObtenerLaminas';
 
 function App() {
   const [showAlbum, setShowAlbum] = useState(false);
+  const [showObtenerLaminas, setShowObtenerLaminas] = useState(false);
 
   return (
     <>
       <Router>
         <div className="app">
-          <Sidebar setShowAlbum={setShowAlbum} />
+          <Sidebar setShowAlbum={setShowAlbum} setShowObtenerLaminas={setShowObtenerLaminas} />
           <div className="content">
             <Routes>
               {showAlbum && <Route path="/album" element={<Album />} />}
-              {/* Agrega más rutas según sea necesario */}
+              {showObtenerLaminas && <Route path="/obtener-laminas" element={<ObtenerLaminas />} />}
+              {/* Agrega más rutas*/}
             </Routes>
           </div>
         </div>
       </Router>
-      {!showAlbum && (
+      {/* si no he hecho click en los enlaces album y obtenerlaminas se muestra lo siguiente*/}
+      {!showAlbum && !showObtenerLaminas && (
         <>
           <div>
             {/* Aqui pongo el logo de sw*/}
@@ -40,9 +44,11 @@ function App() {
           </p>
         </>
       )}
-      {showAlbum && (
+      {/*botón return album
+      {showAlbum && showObtenerLaminas &&(
         <button onClick={() => setShowAlbum(false)}>Regresar</button>
-      )}
+        
+      )}*/}
     </>
   );
 }

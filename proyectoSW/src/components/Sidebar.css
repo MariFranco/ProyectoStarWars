@@ -3,13 +3,28 @@
   background-color: #e49090; /* Color de fondo de la barra */
   color: #fff; /* Color del texto */
 }
+.links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;  
+}
+
+.links a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 2em;
+}
+
+.links a:hover {
+  color: #b50d0d; 
+}
 
 ul {
-  list-style-type: none; /* Eliminar viñetas de la lista */
   padding: 0;
   margin: 0;
   display: flex; /* Mostrar elementos en línea */
-  justify-content: center; /* Centrar los elementos horizontalmente */
+  
 }
 
 li {
