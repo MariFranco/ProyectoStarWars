@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/Sidebar'; {/*SIDEBAR MENÚ PRINCIPAL*/}
 import Album from './Album';
 import './App.css';
 import ObtenerLaminas from './ObtenerLaminas';
@@ -18,7 +18,6 @@ function App() {
             <Routes>
               {showAlbum && <Route path="/album" element={<Album />} />}
               {showObtenerLaminas && <Route path="/obtener-laminas" element={<ObtenerLaminas />} />}
-              {/* Agrega más rutas*/}
             </Routes>
           </div>
         </div>
@@ -30,7 +29,7 @@ function App() {
             {/* Aqui pongo el logo de sw*/}
             <img src="/images/StarWarsLogo.svg" className="logo" alt="SW logo" />
           </div>
-          <h1>Universo Star Wars</h1>
+          <div className='tituloIni'><h1>Universo Star Wars</h1></div>
           <div className="card">
             <h2>BIENVENIDO</h2>
             <p>Aqui podrás coleccionar todas tus laminitas de Star Wars</p>
@@ -44,11 +43,6 @@ function App() {
           </p>
         </>
       )}
-      {/*botón return album
-      {showAlbum && showObtenerLaminas &&(
-        <button onClick={() => setShowAlbum(false)}>Regresar</button>
-        
-      )}*/}
     </>
   );
 }

@@ -1,23 +1,26 @@
 .sidebar {
   width: 100%; /* Ancho completo */
-  background-color: #e49090; /* Color de fondo de la barra */
   color: #fff; /* Color del texto */
+  box-shadow: 0px 1px 4px #160589da;
 }
 .links {
   list-style-type: none;
   padding: 0;
   display: flex;
-  justify-content: center;  
+  justify-content: center; 
+  margin-left: 3em; 
+  font-family: 'Courier New';
 }
 
 .links a {
   text-decoration: none;
-  color: #333;
-  margin-right: 2em;
+  color: #ffffff;
+  margin-right: 5em;
 }
 
 .links a:hover {
-  color: #b50d0d; 
+  color: #432dd0da; 
+  font-weight: bold;
 }
 
 ul {
@@ -27,9 +30,6 @@ ul {
   
 }
 
-li {
-  margin-right: 20px; /* Espaciado entre elementos de la lista */
-}
 
 li:last-child {
   margin-right: 0; /* Eliminar el margen del último elemento */

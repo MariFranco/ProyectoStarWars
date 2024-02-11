@@ -1,23 +1,26 @@
 html, body {
   height: 100vh; /* Asegura que el html y el body ocupen el 100% de la altura del viewport */
   margin: 0; /* Elimina cualquier margen predeterminado */
+  background-image: url('/images/fondoestrellas.jpg'); 
+  
 }
 
-/* Resto de tus estilos CSS */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+
 }
 
 a {
-  color: #646cff;
+  color: #ffffff;
   text-decoration: inherit;
 }
 

@@ -1,3 +1,4 @@
+{/*SIDEBAR MENÚ PRINCIPAL*/}
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -18,7 +19,7 @@ function Sidebar({ setShowAlbum, setShowObtenerLaminas}: SidebarProps) {
         <div className='links'>
           <Link to="/" onClick={regresoInicio}> Inicio </Link>
           <Link to="/album" onClick={() => setShowAlbum(true)}> Mi Álbum </Link>
-          <Link to="/obtener-laminas" onClick={() => setShowObtenerLaminas(true)}> Obtener Láminas </Link>
+          <Link to="/obtener-laminas" onClick={() => setShowObtenerLaminas(true)}> Obtener Láminas</Link>
         </div>
       </nav>
     </div>

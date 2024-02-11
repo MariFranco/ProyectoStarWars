@@ -1,25 +1,33 @@
+{/*PAGINA DE MI ALBUM*/}
+import SidebarAlbum from './components/SidebarAlbum'; {/*SIDEBAR MENÚ ALBUM*/}
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Peliculas from './Peliculas';
+import Personajes from './Personajes';
+import Naves from './Naves';
+
 function Album() {
+  const [showPeliculas, setShowPeliculas] = useState(true);
+  const [showPersonajes, setShowPersonajes] = useState(false);
+  const [showNaves, setShowNaves] = useState(false);
+
   return (
+    <>
     <div>
       <h2>Mi Álbum</h2>
-      <table>
-        {/* Aquí puedes agregar las filas y columnas de tu tabla */}
-        <thead>
-          <tr>
-            <th>Columna 1</th>
-            <th>Columna 2</th>
-            {/* Agregar más columnas según sea necesario */}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Dato 1</td>
-            <td>Dato 2</td>
-            {/* Agregar más datos según sea necesario */}
-          </tr>
-        </tbody>
-      </table>
+        <div className="app">
+          <SidebarAlbum setShowPeliculas={setShowPeliculas} setShowPersonajes={setShowPersonajes} setShowNaves={setShowNaves}/>
+          <div className="content">
+            <Routes>
+              {showPeliculas && <Route path="/peliculas" element={<Peliculas />} />}
+              {showPersonajes && <Route path="/personajes" element={<Personajes />} />}
+              {showNaves && <Route path="/naves" element={<Naves />} />}
+            </Routes>
+          </div>
+        </div>
+      
     </div>
+    </>
   );
 }
 
