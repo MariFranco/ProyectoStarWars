@@ -6,29 +6,47 @@ import Peliculas from './Peliculas';
 import Personajes from './Personajes';
 import Naves from './Naves';
 
+export interface IAlbumNav {
+  showPeliculas: boolean
+  showPersonajes: boolean
+  showNaves: boolean
+}
+
 function Album() {
-  const [showPeliculas, setShowPeliculas] = useState(true);
-  const [showPersonajes, setShowPersonajes] = useState(false);
-  const [showNaves, setShowNaves] = useState(false);
+  // const [showPeliculas, setShowPeliculas] = useState(true);
+  // const [showPersonajes, setShowPersonajes] = useState(false);
+  // const [showNaves, setShowNaves] = useState(false);
+  const [albumNav, setalbumNav] = useState<IAlbumNav>({
+    showPeliculas: true,
+    showPersonajes: false,
+    showNaves: false,
+  });
+
 
   return (
     <>
     <div>
       <h2>Mi Álbum</h2>
         <div className="app">
-          <SidebarAlbum setShowPeliculas={setShowPeliculas} setShowPersonajes={setShowPersonajes} setShowNaves={setShowNaves}/>
-          <div className="content">
+          <SidebarAlbum setalbumNav={setalbumNav}/>
+          {/* <div className="content">
             <Routes>
-              {showPeliculas && <Route path="/peliculas" element={<Peliculas />} />}
-              {showPersonajes && <Route path="/personajes" element={<Personajes />} />}
-              {showNaves && <Route path="/naves" element={<Naves />} />}
+              {albumNav.showPeliculas && }
+              {albumNav.showPersonajes && }
+              {albumNav.showNaves && }
             </Routes>
-          </div>
+          </div> */}
         </div>
       
     </div>
     </>
   );
+  
+  function handleClick(url: string){
+    setalbumNav((prevState: IAlbumNav) => ({
+        ...prevState
+    }))
+  }
 }
 
 export default Album; // Exporta el componente Album

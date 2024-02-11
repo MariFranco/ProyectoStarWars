@@ -3,31 +3,34 @@
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import './SidebarAlbum.css';
+import { IAlbumNav } from '../Album';
 
 interface SidebarAlbumProps {
-    setShowPeliculas: (value: boolean) => void; 
-    setShowPersonajes: (value: boolean) => void;
-    setShowNaves: (value: boolean) => void;
+  setalbumNav:React.Dispatch<React.SetStateAction<IAlbumNav>>
 }
 
-function SidebarAlbum({ setShowPeliculas, setShowPersonajes, setShowNaves}: SidebarAlbumProps) {
-    setShowPeliculas(false);
-    setShowPersonajes(false);
-    setShowNaves(false);
-  
+function SidebarAlbum({ setalbumNav }: SidebarAlbumProps) {
+
     return (
       <div className="sidebar-album">
         <Sidebar>
             <Menu>
               <div className='link-album'>
-                <MenuItem><Link to="/peliculas" onClick={() => setShowPeliculas(true)}> Películas </Link></MenuItem>
-                <MenuItem><Link to="/personajes" onClick={() => setShowPersonajes(true)}> Personajes </Link></MenuItem>
-                <MenuItem><Link to="/naves" onClick={() => setShowNaves(true)}> Naves </Link></MenuItem>
+                <MenuItem><Link to="/peliculas" onClick={() => handleClick('showPeliculas')}> Películas </Link></MenuItem>
+                <MenuItem><Link to="/personajes" onClick={() => handleClick('showPersonajes')}> Personajes </Link></MenuItem>
+                <MenuItem><Link to="/naves" onClick={() => handleClick('showNaves')}> Naves </Link></MenuItem>
               </div>
             </Menu>
         </Sidebar>
       </div>
     );
+
+    function handleClick(url: keyof IAlbumNav){
+      setalbumNav((prevState: IAlbumNav) => ({
+          ...prevState,
+          [url]: true
+      }))
+    }
   }
   
   export default SidebarAlbum;
