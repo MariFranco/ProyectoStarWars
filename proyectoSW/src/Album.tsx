@@ -1,6 +1,4 @@
-import React from 'react';
-
-function Album () {
+function Album() {
   return (
     <div>
       <h2>Mi Álbum</h2>
@@ -25,4 +23,4 @@ function Album () {
   );
 }
 
-export default Album;
+export default Album; // Exporta el componente Album
