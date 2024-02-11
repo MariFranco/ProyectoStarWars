@@ -26,13 +26,25 @@ interface IPersonaje {
 {/*Esta función obtiene las laminas*/}
 async function getLamina(){
 
-    const laminasCaso1 = [
-        ...(await obtenetPersonajesRandom(3)),
-        ...(await obtenerNavesRandom(2))
-    ]
-
+    const caso = getRandom(2);
+    if (caso == 1){
+        {/*caso 1 = 3 personajes 2 naves*/}
+        const laminasCaso1 = [
+            ...(await obtenetPersonajesRandom(3)),
+            ...(await obtenerNavesRandom(2))
+        ]
+    }
+    else {
+        {/*caso 2 = 1 pelicula 3 personajes 1 nave*/}
+        const laminasCaso2 = [
+            ...(await obtenerPeliculasRandom()),
+            ...(await obtenetPersonajesRandom(3)),
+            ...(await obtenerNavesRandom(1))
+        ]
+    }  
 }
 
+{/*aqui se obtiene el personaje random*/}
 async function obtenetPersonajesRandom(cant: number): Promise<ILamina[]> {
     const personajes: IPersonaje[] = [];
     for (let i = 0; i<cant; i++) {
@@ -44,6 +56,7 @@ async function obtenetPersonajesRandom(cant: number): Promise<ILamina[]> {
     return personajes.map(personaje => ({ nombre: personaje.name, url: personaje.url, tipo: 'personaje'}))
 }
 
+{/*aqui se obtiene la nave random*/}
 async function obtenerNavesRandom(cant: number): Promise<ILamina[]> {
     const naves: INave[] = [];
     for (let i=0; i<cant; i++){
@@ -55,6 +68,7 @@ async function obtenerNavesRandom(cant: number): Promise<ILamina[]> {
     return naves.map(naves => ({nombre: naves.name, url: naves.url, tipo: 'nave'}))
 }
 
+{/*aqui se obtiene la pelicula random*/}
 async function obtenerPeliculasRandom(): Promise<ILamina[]> {
     const peliculas: IPelicula[] = [];
     const randomPeliculas = getRandom(6);
