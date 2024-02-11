@@ -1,5 +1,3 @@
-import Naves from "../Naves";
-
 import {
     ILamina,
     IPelicula,
@@ -11,7 +9,7 @@ import {
 
 {/*Esta función obtiene las laminas*/}
 export function getLamina(personajes: IPersonaje[], naves: INave[], peliculas: IPelicula[]) : ILamina[]{
-
+    // console.log({personajes, naves, peliculas})
     const caso = getRandom(2);
     if (caso == 1){
         {/*caso 1 = 3 personajes 2 naves*/}
@@ -35,11 +33,15 @@ export function getLamina(personajes: IPersonaje[], naves: INave[], peliculas: I
 {/*aqui se obtiene el personaje random*/}
 function obtenetPersonajesRandom(cant: number, personajes: IPersonaje[]): ILamina[] {
     const temppersonajes: IPersonaje[] = [];
+    console.log(personajes)
     for (let i = 0; i<cant; i++) {
-        const randomPersonajes = getRandom(82);
+        const randomPersonajes = getRandom(9, 0);
+        console.log(randomPersonajes)
         const responseJsonPersonaje: IPersonaje  = personajes[randomPersonajes];
+        // console.log(responseJsonPersonaje)
         temppersonajes.push(responseJsonPersonaje)
     }
+    // console.log(temppersonajes)
     return temppersonajes.map(personaje => ({ nombre: personaje.name, url: personaje.url, tipo: 'personaje'}))
 }
 
@@ -47,7 +49,7 @@ function obtenetPersonajesRandom(cant: number, personajes: IPersonaje[]): ILamin
 function obtenerNavesRandom(cant: number, naves: INave[]): ILamina[] {
     const tempNaves: INave[] = [];
     for (let i=0; i<cant; i++){
-        const randomNaves = getRandom(35, 0);
+        const randomNaves = getRandom(9, 0);
         const responseJsonNave: INave  = naves[randomNaves];
         tempNaves.push(responseJsonNave)
     }
