@@ -1,12 +1,15 @@
 import React from "react";
-import { ILamina, INave, IPelicula, IPersonaje } from "../types";
+import { ILamina, INave, INaveAlbum, IPelicula, IPeliculaAlbum, IPersonaje, IPersonajeAlbum } from "../types";
 import { Action, ACTION_TYPE } from "./actions";
 
 export interface MyAppState {
     peliculas: IPelicula[] | undefined;
     naves: INave[] | undefined;
     personajes: IPersonaje[] | undefined;
-    album: ILamina[]
+    album: ILamina[];
+    personajesAlbum : IPersonajeAlbum[];
+    peliculasAlbum: IPeliculaAlbum[];
+    navesAlbum: INaveAlbum[];
 }
 
 {/* inicialmente no tenemos nada*/}
@@ -14,7 +17,10 @@ export const initialState: MyAppState = {
     peliculas: undefined,
     naves: undefined,
     personajes: undefined,
-    album: []
+    album: [],
+    personajesAlbum: [],
+    peliculasAlbum: [],
+    navesAlbum: [],
 }
 
 export const myAppReducer: React.Reducer<MyAppState,  Action> = (prevState, action) => {
@@ -37,6 +43,30 @@ export const myAppReducer: React.Reducer<MyAppState,  Action> = (prevState, acti
             ...prevState,
             naves: action.payload as INave[]
             };
+        }
+        case  ACTION_TYPE.SAVE_ALBUM: {
+            return{
+                ...prevState,
+                album: action.payload as ILamina[]
+            }
+        }
+        case  ACTION_TYPE.SAVE_PELICULASALMBUM: {
+            return{
+                ...prevState,
+                peliculasAlbum: action.payload as IPeliculaAlbum[]
+            }
+        }
+        case  ACTION_TYPE.SAVE_PERSONAJESALBUM: {
+            return{
+                ...prevState,
+                personajesAlbum: action.payload as IPersonajeAlbum[]
+            }
+        }
+        case  ACTION_TYPE.SAVE_NAVESALBUM: {
+            return{
+                ...prevState,
+                navesAlbum: action.payload as INaveAlbum[]
+            }
         }
         default:
             throw new Error('Action not supported');

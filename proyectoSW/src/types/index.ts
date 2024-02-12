@@ -18,3 +18,18 @@ export interface IPersonaje {
     name : string;
     url : string;
 }
+
+export interface IPeliculaAlbum{
+    title : string;
+    url : string;
+}
+
+export interface IPersonajeAlbum{
+    name : string;
+    url : string;
+}
+
+export interface INaveAlbum{
+    name : string;
+    url : string;
+}

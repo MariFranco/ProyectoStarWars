@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ILamina, INave, IPelicula, IPersonaje } from "./types";
+import { ILamina, INave, INaveAlbum, IPelicula, IPeliculaAlbum, IPersonaje, IPersonajeAlbum } from "./types";
 import { useOutletContext } from "react-router-dom";
 import { MyAppState } from "./store/reducer";
-import { saveCharacters, saveFilms, saveStarships } from "./store/actions";
+import { saveCharacters, saveFilms, saveNavesAlbum, savePeliculasAlbum, savePersonajesAlbum, saveStarships } from "./store/actions";
 import "./ObtenerLaminas.css"
 import { getLamina } from "./utils";
 import { sleep } from "./utils/sleep";
@@ -20,15 +20,19 @@ function ObtenerLaminas() {
         const fetchData = async () => {
             const responsePersonaje = await fetch('https://swapi.dev/api/people/');
             const responseJsonPersonaje  = await responsePersonaje.json();
-            dispatch(saveCharacters(responseJsonPersonaje.results as IPersonaje[]))
+            dispatch(saveCharacters(responseJsonPersonaje.results as IPersonaje[]));
+            dispatch(savePersonajesAlbum(responseJsonPersonaje.results as IPersonajeAlbum[]))
 
             const responsePelicula = await fetch('https://swapi.dev/api/films/');
             const responseJsonPelicula  = await responsePelicula.json();
-            dispatch(saveFilms(responseJsonPelicula.results as IPelicula[]))
+            dispatch(saveFilms(responseJsonPelicula.results as IPelicula[]));
+            dispatch(savePeliculasAlbum(responseJsonPelicula.results as IPeliculaAlbum[]))
+
 
             const responseNave = await fetch('https://swapi.dev/api/starships/');
             const responseJsonNave  = await responseNave.json();
-            dispatch(saveStarships(responseJsonNave.results as INave[]))
+            dispatch(saveStarships(responseJsonNave.results as INave[]));
+            dispatch(saveNavesAlbum(responseJsonNave.results as INaveAlbum[]))
             setLoading(false)
         }
         fetchData();
