@@ -16,6 +16,8 @@ function Album() {
   const [mostrarPersonajes, setMostrarPersonajes] = useState(false);
   //const [navesAlbum] = useState <INaveAlbum[]> ([]);
   const [mostrarNaves, setMostrarNaves] = useState(false);
+  const [laminaUrlNew, setLaminaUrlNew] = useState<string[]>([]);
+
   
   
 
@@ -29,11 +31,13 @@ function Album() {
       <button onClick={handleClickShip}>Naves</button>
     </div>
     <div className='showItems'>
-        {mostrarPeliculas && appState.peliculasAlbum.map(film => (
-                <div className="info-laminaAlbum">                 
+        {mostrarPeliculas && appState.peliculasAlbum
+          .filter(film => film.url.includes("films")).map(film => (
+                <div className={`info-laminaAlbum ${laminaUrlNew.includes(film.url) ? 'lamina-agregada' : ''}`}>                 
                     <h2>{film.title}</h2>
                     <br />
                     <p>Lámina # {film.url.split('/').filter(Boolean).pop()}</p>
+                    {laminaUrlNew.includes(film.url) && <p>Agregado recientemente</p>}
                     <br />  
                 </div>
             ))} 

@@ -12,8 +12,10 @@ function ObtenerLaminas() {
     const [appState, dispatch] = useOutletContext<[MyAppState, Function]>();
     const [loading, setLoading] = useState(true);
     const [laminas, setLaminas] = useState <ILamina[]> ([]);
-    const [disableButton, setDisableButton] = useState(false);
+    const [disableButtonAbrir, setDisableButtonAbrir] = useState(false);
+    const [disableButtonAgregar, setDisableButtonAgregar] = useState(true);
     const [openedChest, setOpenedChests] = useState<Number[]>([]);
+    const [laminasObtenidas, setLaminasObtenidas] = useState<string[]>([]); 
 
     useEffect(() => {
         {/*me traigo todo del API, lo convierto en JSON y lo pego al context*/}
@@ -36,6 +38,7 @@ function ObtenerLaminas() {
             setLoading(false)
         }
         fetchData();
+        setLaminasObtenidas([]);
     }, [])
     // ternario
     // if (condition) {actionTrue} else {actionFalse}
@@ -48,7 +51,7 @@ function ObtenerLaminas() {
             {[1,2,3,4].map(id => (
                 <div className="sobres" key={"sobre" + id}>
                     <div><img src="../images/sobre.png" width={80}/></div>
-                    <button onClick={() => {handleClick(id)}} disabled={disableButton || openedChest.includes(id)}>Abrir</button>
+                    <button onClick={() => {handleClick(id)}} disabled={disableButtonAbrir || openedChest.includes(id)}>Abrir</button>
             </div>
         ))}
         </div>
@@ -60,7 +63,7 @@ function ObtenerLaminas() {
                     <p>Tipo: {lamina.tipo}</p>
                     <p>Lámina # {lamina.url.split('/').filter(Boolean).pop()}</p>
                     <br />
-                    <button>agregar</button>
+                    <button onClick={handleClickAdd}>Agregar</button>
                 </div>
             ))} 
         </div>
@@ -70,12 +73,27 @@ function ObtenerLaminas() {
 
 function handleClick (id: number) {
     setOpenedChests(prevState => [...prevState, id]);
-    setLaminas (getLamina(appState.personajes!, appState.naves!, appState.peliculas!));
-    setDisableButton(true);
+    const newLaminas = getLamina(appState.personajes!, appState.naves!, appState.peliculas!);
+    setLaminas (newLaminas);
+    const newUrl = newLaminas.map(lamina => lamina.url);
+    const UrlsSinRepetir = newUrl.filter(url => !laminasObtenidas.includes(url));
+    if (UrlsSinRepetir.length > 0){
+        setDisableButtonAgregar(false)
+    }
+    else{
+        setDisableButtonAgregar(true)
+    }
+    setDisableButtonAbrir(true);
     (async function() {
         await sleep(5000);
-        setDisableButton(false);
+        setDisableButtonAbrir(false);
     })()
+}
+
+function handleClickAdd(){
+    const newUrl = laminas.map(lamina => lamina.url);
+    setLaminasObtenidas(prevURLs => [...prevURLs, ...newUrl]); 
+    setDisableButtonAgregar(true);
 }
   }
   
