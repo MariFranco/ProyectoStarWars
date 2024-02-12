@@ -16,6 +16,7 @@ function ObtenerLaminas() {
     const [disableButtonAgregar, setDisableButtonAgregar] = useState(true);
     const [openedChest, setOpenedChests] = useState<Number[]>([]);
     const [laminasObtenidas, setLaminasObtenidas] = useState<string[]>([]); 
+    const [segundosTranscurridos, setSegundosTranscurridos] = useState(0);
 
     useEffect(() => {
         {/*me traigo todo del API, lo convierto en JSON y lo pego al context*/}
@@ -47,6 +48,7 @@ function ObtenerLaminas() {
     <div className="sobresGeneral">
         <h1>Sobres sorpresa</h1>
         <p>Selecciona un sobre para obtener láminas nuevas</p>
+        <p>Puedes abrir el siguiente sobre en: {segundosTranscurridos}s</p>
         <div className="contenedor-flex">
             {[1,2,3,4].map(id => (
                 <div className="sobres" key={"sobre" + id}>
@@ -71,7 +73,7 @@ function ObtenerLaminas() {
       </div>
     );
 
-function handleClick (id: number) {
+async function handleClick (id: number) {
     setOpenedChests(prevState => [...prevState, id]);
     const newLaminas = getLamina(appState.personajes!, appState.naves!, appState.peliculas!);
     setLaminas (newLaminas);
@@ -84,10 +86,12 @@ function handleClick (id: number) {
         setDisableButtonAgregar(true)
     }
     setDisableButtonAbrir(true);
-    (async function() {
-        await sleep(60000);
-        setDisableButtonAbrir(false);
-    })()
+    for (let i = 60; i > 0; i--) {
+        await sleep(1000);
+        setSegundosTranscurridos(i);
+    }
+    
+    setDisableButtonAbrir(false);
 }
 
 function handleClickAdd(){
