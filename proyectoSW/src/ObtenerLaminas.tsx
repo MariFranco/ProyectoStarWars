@@ -85,7 +85,7 @@ function handleClick (id: number) {
     }
     setDisableButtonAbrir(true);
     (async function() {
-        await sleep(5000);
+        await sleep(60000);
         setDisableButtonAbrir(false);
     })()
 }
