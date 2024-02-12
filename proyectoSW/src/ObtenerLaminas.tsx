@@ -53,7 +53,9 @@ function ObtenerLaminas() {
             {laminas.map(lamina => (
                 <div className="info-lamina">                  
                     <h2>{lamina.nombre}</h2>
-                    <p>{lamina.tipo}</p>
+                    <p>Tipo: {lamina.tipo}</p>
+                    <p>Lámina # {lamina.url.split('/').filter(Boolean).pop()}</p>
+                    <br />
                     <button>agregar</button>
                 </div>
             ))} 

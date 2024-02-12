@@ -36,13 +36,13 @@ function obtenetPersonajesRandom(cant: number, personajes: IPersonaje[]): ILamin
     console.log(personajes)
     for (let i = 0; i<cant; i++) {
         const randomPersonajes = getRandom(9, 0);
-        console.log(randomPersonajes)
+        //console.log(randomPersonajes)
         const responseJsonPersonaje: IPersonaje  = personajes[randomPersonajes];
         // console.log(responseJsonPersonaje)
         temppersonajes.push(responseJsonPersonaje)
     }
     // console.log(temppersonajes)
-    return temppersonajes.map(personaje => ({ nombre: personaje.name, url: personaje.url, tipo: 'personaje'}))
+    return temppersonajes.map(personaje => ({nombre: personaje.name, url: personaje.url, tipo: 'personaje'}))
 }
 
 {/*aqui se obtiene la nave random*/}

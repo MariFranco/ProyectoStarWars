@@ -38,14 +38,15 @@
     justify-content: center;
     align-items: center;
     margin-right: 1em;
-    margin-top: 5em;    
+    margin-top: 5em; 
+    padding: 1em;   
   }
 
 .info-lamina{
     width: 200px;
-    height: 350px;
+    height: 250px;
     margin-right: 30px;
-    margin-left: 3em;
+    margin-left: 15px;
     background-color: rgba(89, 64, 255, 0.6);
     padding: 1em;
     border-radius: 20px;

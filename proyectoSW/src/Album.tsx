@@ -1,10 +1,7 @@
 {/*PAGINA DE MI ALBUM*/}
 import SidebarAlbum from './components/SidebarAlbum'; {/*SIDEBAR MENÚ ALBUM*/}
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Peliculas from './Peliculas';
-import Personajes from './Personajes';
-import Naves from './Naves';
+
 
 export interface IAlbumNav {
   showPeliculas: boolean
