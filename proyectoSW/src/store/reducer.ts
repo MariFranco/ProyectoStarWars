@@ -1,18 +1,20 @@
 import React from "react";
-import { INave, IPelicula, IPersonaje } from "../types";
+import { ILamina, INave, IPelicula, IPersonaje } from "../types";
 import { Action, ACTION_TYPE } from "./actions";
 
 export interface MyAppState {
     peliculas: IPelicula[] | undefined;
     naves: INave[] | undefined;
     personajes: IPersonaje[] | undefined;
+    album: ILamina[]
 }
 
 {/* inicialmente no tenemos nada*/}
 export const initialState: MyAppState = {
     peliculas: undefined,
     naves: undefined,
-    personajes: undefined
+    personajes: undefined,
+    album: []
 }
 
 export const myAppReducer: React.Reducer<MyAppState,  Action> = (prevState, action) => {

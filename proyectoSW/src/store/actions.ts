@@ -8,7 +8,8 @@ export interface Action {
 export enum ACTION_TYPE {
     SAVE_FILMS =  'SAVE_FILMS',
     SAVE_CHARACTERS=  'SAVE_CHARACTERS',
-    SAVE_STARSHIPS = 'SAVE_STARSHIPS'
+    SAVE_STARSHIPS = 'SAVE_STARSHIPS',
+    SAVE_ALBUM = 'SAVE_ALBUM',
 }
 
 export const saveFilms = (payload: IPelicula[]): Action => ({

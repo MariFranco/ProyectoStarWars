@@ -38,25 +38,27 @@ function ObtenerLaminas() {
     // condition ? actionTrue : actionFalse
     return loading ? <h1>Cargando...</h1>:(
     <div className="sobresGeneral">
-      <div style={{display:"flex", flexDirection: "row"}}>
-        {[1,2,3,4].map(id => (
-            <div className="sobres" key={"sobre" + id}>
-                <h1>Sobre {id}</h1>
-                <div><img src="../images/sobre.png" width={80}/></div>
-                <button onClick={() => {handleClick(id)}} disabled={disableButton || openedChest.includes(id)}>Abrir</button>
+        <h1>Sobres sorpresa</h1>
+        <p>Selecciona un sobre para obtener láminas nuevas</p>
+        <div className="contenedor-flex">
+            {[1,2,3,4].map(id => (
+                <div className="sobres" key={"sobre" + id}>
+                    <div><img src="../images/sobre.png" width={80}/></div>
+                    <button onClick={() => {handleClick(id)}} disabled={disableButton || openedChest.includes(id)}>Abrir</button>
             </div>
         ))}
         </div>
-        <h1>Obtuviste las siguiente laminas</h1>
-        {laminas.map(lamina => (
-            <div className="sobres">                  
-                <h1>{lamina.nombre}</h1>
-                <h2>{lamina.tipo}</h2>
-            </div>
-        ))}
-        {/* 
-            map de laminas obtenidas: ILmaina[] => renderizas las vueltas
-        */}
+        <h2 className="resultadoSobre">OBTUVISTE LAS SIGUIENTES LÁMINAS:</h2>
+        <div className="sobres-resultado">
+            {laminas.map(lamina => (
+                <div className="info-lamina">                  
+                    <h2>{lamina.nombre}</h2>
+                    <p>{lamina.tipo}</p>
+                    <button>agregar</button>
+                </div>
+            ))} 
+        </div>
+        {/* map de laminas obtenidas: ILmaina[] => renderizas las vueltas*/}
       </div>
     );
 
